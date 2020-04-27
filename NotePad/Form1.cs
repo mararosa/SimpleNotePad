@@ -16,7 +16,7 @@ namespace NotePad
         //Dialogs
         private OpenFileDialog openFileDialog;
         private SaveFileDialog saveFileDialog;
-        private FontConverter fontDialog;
+        private FontDialog fontDialog;
         public Form1()
         {
             InitializeComponent();
@@ -103,6 +103,34 @@ namespace NotePad
                 openFileDialog = null; //convert the object to new again
             }
         }
+        private void SaveFileAs()
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(this.richTextBox1.Text))
+                {
+                    saveFileDialog = new SaveFileDialog();
+                    saveFileDialog.Filter = "Text File (*.txt) | *.txt! All Files(*.*) | *.*";
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        File.WriteAllText(saveFileDialog.FileName, this.richTextBox1.Text);
+                        this.Text = saveFileDialog.FileName;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("There is no text");
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+
+            }
+        }
 
         private void NewToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -121,17 +149,51 @@ namespace NotePad
 
         private void SaveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            SaveFileAs();
         }
 
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (!string.IsNullOrEmpty(this.richTextBox1.Text))
+                {
+                    SaveFile();
+                }
+                else
+                {
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
 
+            }
+            finally
+            {
+
+            }
         }
 
         private void FontToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            try
+            {
+                fontDialog = new FontDialog();
 
+                if (fontDialog.ShowDialog() == DialogResult.OK)
+                {
+                    this.richTextBox1.Font = fontDialog.Font;
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+
+            }
         }
     }
 }
