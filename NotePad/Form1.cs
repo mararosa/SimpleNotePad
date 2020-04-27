@@ -25,5 +25,35 @@ namespace NotePad
         {
 
         }
+
+        private void NewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SaveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FontToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
