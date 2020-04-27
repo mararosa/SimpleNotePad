@@ -60,10 +60,11 @@ namespace NotePad
                 if (!string.IsNullOrEmpty(this.richTextBox1.Text))
                 {
                     saveFileDialog = new SaveFileDialog();
-
+                    saveFileDialog.Filter = "Text File (*.txt) | *.txt";
                     if (saveFileDialog.ShowDialog() == DialogResult.OK)
                     {
                         File.WriteAllText(saveFileDialog.FileName, this.richTextBox1.Text);
+                        this.Text = saveFileDialog.FileName;
                     }
                 }
                 else
@@ -81,6 +82,28 @@ namespace NotePad
             }
         }
 
+        private void OpenFile()
+        {
+            try
+            {
+                openFileDialog = new OpenFileDialog();
+
+                if(openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    this.richTextBox1.Text = File.ReadAllText(openFileDialog.FileName);
+                    this.Text = openFileDialog.FileName;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error while trying to open file");
+            }
+            finally
+            {
+                openFileDialog = null; //convert the object to new again
+            }
+        }
+
         private void NewToolStripMenuItem_Click(object sender, EventArgs e)
         {
             NewFile();
@@ -88,7 +111,7 @@ namespace NotePad
 
         private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            OpenFile(); 
         }
 
         private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
