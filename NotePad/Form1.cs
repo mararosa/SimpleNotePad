@@ -52,6 +52,35 @@ namespace NotePad
             }
         }
 
+        private void SaveFile()
+        {
+            try
+            {
+
+                if (!string.IsNullOrEmpty(this.richTextBox1.Text))
+                {
+                    saveFileDialog = new SaveFileDialog();
+
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        File.WriteAllText(saveFileDialog.FileName, this.richTextBox1.Text);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("There is no text");
+                }
+            }
+            catch(Exception ex)
+            {
+
+            }
+            finally
+            {
+
+            }
+        }
+
         private void NewToolStripMenuItem_Click(object sender, EventArgs e)
         {
             NewFile();
@@ -64,7 +93,7 @@ namespace NotePad
 
         private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            SaveFile();
         }
 
         private void SaveAsToolStripMenuItem_Click(object sender, EventArgs e)
