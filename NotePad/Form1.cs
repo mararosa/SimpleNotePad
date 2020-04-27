@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace NotePad
 {
@@ -26,9 +27,34 @@ namespace NotePad
 
         }
 
+        //Creates a new file.
+        private void NewFile()
+        {
+            try
+            {
+                if(!string.IsNullOrEmpty(this.richTextBox1.Text))
+                {
+                    MessageBox.Show("You need to save first");
+                }
+                else
+                {
+                    this.richTextBox1.Text = string.Empty;
+                    this.Text = "Untitled";
+                }
+            }
+            catch(Exception ex)
+            {
+
+            }
+            finally
+            {
+
+            }
+        }
+
         private void NewToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            NewFile();
         }
 
         private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
