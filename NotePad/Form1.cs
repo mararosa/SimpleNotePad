@@ -24,6 +24,7 @@ namespace NotePad
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            fontDialog = new FontDialog();
 
         }
 
@@ -179,8 +180,6 @@ namespace NotePad
         {
             try
             {
-                fontDialog = new FontDialog();
-
                 if (fontDialog.ShowDialog() == DialogResult.OK)
                 {
                     this.richTextBox1.Font = fontDialog.Font;
